@@ -157,9 +157,9 @@ namespace HangManGame
                 {
                     hak--;
                     lblHak.Text = "Kalan Hak: " + hak;
-                    int deneme = 8 - hak;
-                    string deneme2 = deneme + ".png";
-                    string image = Path.Combine(Application.StartupPath, "images", deneme2);
+                    int fotoNumarasi = 8 - hak;
+                    string fotoAdiOlusan = fotoNumarasi + ".png";
+                    string image = Path.Combine(Application.StartupPath, "images", fotoAdiOlusan);
                     pictureBox.Image = Image.FromFile(image);
                     if (hak == 0)
                     {

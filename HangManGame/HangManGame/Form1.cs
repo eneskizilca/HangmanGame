@@ -59,7 +59,7 @@ namespace HangManGame
         {
             InitializeComponent();
             string kapakFotosu = Path.Combine(Application.StartupPath, "images", "kapak_foto.png");
-            pictureBox.Image = Image.FromFile(kapakFotosu);
+            pictureBox.Image = Image.FromFile(kapakFotosu); //ilk acilista kapak fotosu koy
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -77,7 +77,7 @@ namespace HangManGame
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //OYUNU BAŞLAT BUTONU
         {
             lblIpucu.Visible = true;
             lblHak.Visible = true;
@@ -92,7 +92,7 @@ namespace HangManGame
             gizlenmisKelime = "";
             txtGirilenHarf.Text = "";
             txtTamTahmin.Text = "";
-            konuNumarasi = random.Next(1, 4);
+            konuNumarasi = random.Next(1, 4); //buradan itibaren random kategori ve random kelime seciyor
             switch (konuNumarasi)
             {
                 case 1:
@@ -110,15 +110,15 @@ namespace HangManGame
             }
             lblHak.Text = "Kalan Hak: " + hak;
             pictureBox.Image = Image.FromFile(image1);
-            secilenKelimeCharDizisi = secilenKelime.ToCharArray();
+            secilenKelimeCharDizisi = secilenKelime.ToCharArray(); //kelimeyi char dizisine atıyor sonrasında gizlemek ve karşılaştırmak için
             sayac = secilenKelime.Length;
-            for (int i = 0; i < secilenKelime.Length; i++)
+            for (int i = 0; i < secilenKelime.Length; i++) // kelimede boşluk varsa bunu bilinmesi gereken harften sayma 
             {
                 if (secilenKelime[i] == ' ')
                     sayac--;
             }
 
-            for (int i = 0; i < secilenKelime.Length; i++)
+            for (int i = 0; i < secilenKelime.Length; i++) //kelimeyi gizle
             {
                 if (secilenKelime[i] != ' ')
                 {
@@ -128,7 +128,7 @@ namespace HangManGame
             lblKelime.Text = string.Concat(secilenKelimeCharDizisi);
         }
 
-        private void bntKontrol_Click(object sender, EventArgs e)
+        private void bntKontrol_Click(object sender, EventArgs e) //harf var mı diye kontrol edip ona göre aksiyon al
         {
             if (hak > 0 && !(string.IsNullOrEmpty(txtGirilenHarf.Text)))
             {
@@ -143,7 +143,7 @@ namespace HangManGame
                         lblKelime.Text = string.Concat(secilenKelimeCharDizisi);
                         harfBulundu = true;
                         sayac--;
-                        if (sayac == 0)
+                        if (sayac == 0) //bilinecek kelime kalmadıysa kazandır
                         {
                             this.BackColor = Color.Green;
                             MessageBox.Show("Tebrikler Kazandınız !");
@@ -153,7 +153,7 @@ namespace HangManGame
                     }
                 }
 
-                if ((!harfBulundu) && sayac != 0)
+                if ((!harfBulundu) && sayac != 0) //yanlış harf tahmini
                 {
                     hak--;
                     lblHak.Text = "Kalan Hak: " + hak;
@@ -177,7 +177,7 @@ namespace HangManGame
 
         }
 
-        private void btnTamKontrol_Click(object sender, EventArgs e)
+        private void btnTamKontrol_Click(object sender, EventArgs e) //kelimenin tamamının tahminini kontrol et
         {
 
             if (txtTamTahmin.Text.ToUpper().Equals(secilenKelime))
@@ -190,7 +190,7 @@ namespace HangManGame
             }
         }
 
-        private void kazanmaAnimasyonu()
+        private void kazanmaAnimasyonu() //kazanınca olacak işlemler
         {
             lblKelime.Text = secilenKelime;
             this.BackColor = Color.Green;
